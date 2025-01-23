@@ -75,7 +75,27 @@ void insertAtPosition(int x, int pos){
             node2->next= current->next;
             current->next = node2;
         }
-    } 
+    }
+}
+void deleteFromStart(){
+    if(head == NULL){
+        cout<<"Empty List"<<endl;
+    }
+    else{
+        node* temp = head;
+        head = head->next;
+        free(temp);
+    }
+}
+void deleteFromEnd(){
+    node* current = head;
+    while(current->next->next != NULL){
+        current = current->next;
+    }
+    node* temp = current->next;
+    current->next=current->next->next;
+    temp->next = NULL;
+    free(temp);
 }
 
 int main(){
@@ -95,6 +115,8 @@ int main(){
         cout<<"3. Insert at end:"<<endl;
         cout<<"4. Insert at start:"<<endl;
         cout<<"5.Insert at a position:"<<endl;
+        cout<<"6. Delete from start:"<<endl;
+        cout<<"7. Delete from end:"<<endl;
         cout<<"Enter Choice: ";
 
         cin>>choice;
@@ -118,7 +140,10 @@ int main(){
                     cin>>position;
                     insertAtPosition(data,position);
                     break;
-            
+            case 6: deleteFromStart();
+                    break;
+            case 7: deleteFromEnd();
+                    break;
             default: cout<<"Wrong Choice."<<endl;
         }
     }
